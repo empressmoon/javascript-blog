@@ -48,8 +48,8 @@ function titleClickHandler(event){
 // Generate title links in left column
 
 const optArticleSelector = '.post',
-      optTitleSelector = '.post-title',
-      optTitleListSelector = '.titles';
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
 
 function generateTitleLinks(){
 
@@ -93,9 +93,9 @@ function generateTitleLinks(){
   console.log(links);
 
   for(let link of links){
-   link.addEventListener('click', titleClickHandler);
+    link.addEventListener('click', titleClickHandler);
   }
 
 }
 
-generateTitleLinks();
+generateTitleLinks();  
