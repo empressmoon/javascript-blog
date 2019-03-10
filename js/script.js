@@ -54,8 +54,8 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list';
+  optArticleAuthorSelector = '.post-author';
+  //optTagsListSelector = '.tags.list';
 
 
 function generateTitleLinks(customSelector = ''){
@@ -188,7 +188,7 @@ function generateTags(){
 
   for(let tag in allTags){
 
-    const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span><span> ' + '(' + allTags[tag] + ')' + '</span></a></li>';
+    const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a><span> ' + '(' + allTags[tag] + ')' + '</span></li>';
 
     //console.log(linkHTML);
 
@@ -198,7 +198,7 @@ function generateTags(){
     allTagsHTML = allTagsHTML + linkHTML;
 
     /* [NEW] END LOOP: for each tag in allTags: */
-  }  
+  }
 
   /* [NEW] add html from allTagsHTML to tag */
 
