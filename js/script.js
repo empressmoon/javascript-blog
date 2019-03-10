@@ -52,7 +52,7 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list';
 
-function generateTitleLinks(){
+function generateTitleLinks(customSelector = ''){
 
   /* remove contents of titleList */
 
@@ -62,7 +62,8 @@ function generateTitleLinks(){
 
   /* for each article */
 
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  //console.log(optArticleSelector + customSelector);
 
   let html = '';
 
@@ -163,22 +164,22 @@ function tagClickHandler(event){
   /* make new constant named "clickedElement" and give it the value of "this" */
 
   const clickedElement = this;
-  console.log('tag was clicked!');
+  //console.log('tag was clicked!');
 
   /* make a new constant "href" and read the attribute "href" of the clicked element */
 
   const href = clickedElement.getAttribute('href');
-  console.log(href);
+  //console.log(href);
 
   /* make a new constant "tag" and extract tag from the "href" constant */
 
   const tag = href.replace('#tag-', '');
-  console.log(tag);
+  //console.log(tag);
 
   /* find all tag links with class active */
 
   const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
-  console.log(activeTagLinks);
+  //console.log(activeTagLinks);
 
   /* START LOOP: for each active tag link */
 
@@ -196,7 +197,7 @@ function tagClickHandler(event){
   /* find all tag links with "href" attribute equal to the "href" constant */
 
   const tagLinks = document.querySelectorAll('a[href="' + href + '"]');
-  console.log(tagLinks);
+  //console.log(tagLinks);
 
   /* START LOOP: for each found tag link */
 
@@ -205,7 +206,7 @@ function tagClickHandler(event){
     /* add class active */
 
     tagLink.classList.add('.active');
-    console.log(tagLink);
+    //console.log(tagLink);
 
   /* END LOOP: for each found tag link */
 
@@ -214,7 +215,6 @@ function tagClickHandler(event){
   /* execute function "generateTitleLinks" with article selector as argument */
 
   generateTitleLinks('[data-tags~="' + tag + '"]');
-  //console.log('[data-tags~="' + tag + '"]');
 
 }
 
