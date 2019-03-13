@@ -57,7 +57,8 @@ const optArticleSelector = '.post',
   optArticleAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.authors.list';
 
 
 function generateTitleLinks(customSelector = ''){
@@ -128,7 +129,7 @@ function calculateTagsParams(tags){
       params.min = tags[tag];
     }
 
-    console.log(tag + ' is used ' + tags[tag] + ' times');
+      //console.log(tag + ' is used ' + tags[tag] + ' times');
   }
 
   return params;
@@ -136,9 +137,18 @@ function calculateTagsParams(tags){
 
 function calculateTagClass(count, params){
 
+  const normalizedCount = count - params.min;
 
+  const normalizedMax = params.max  - params.min;
+
+  const percentage = normalizedCount / normalizedMax;
+
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+
+  return optCloudClassPrefix + classNumber;
 
 }
+
 
 // GENERATE TAGS --------------------------------------------------------------------------------------
 
@@ -215,7 +225,7 @@ function generateTags(){
   /* [NEW] create variable for all links HTML code */
 
   const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams:', tagsParams);
+  //console.log('tagsParams:', tagsParams);
 
   let allTagsHTML = '';
 
@@ -224,8 +234,8 @@ function generateTags(){
   for(let tag in allTags){
 
     //const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a><span> ' + '(' + allTags[tag] + ')' + '</span></li>';
-    const tagLinkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a><span> ' + '(' + allTags[tag] + ')' + calculateTagClass(allTags[tag], tagsParams) + '</span></li>';
-    console.log('tagLinkHTML:', tagLinkHTML);
+    const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '"><span>' + tag + '</span></a></li>';
+    //console.log('tagLinkHTML:', tagLinkHTML);
 
     //console.log(linkHTML);
 
@@ -233,7 +243,6 @@ function generateTags(){
 
     //allTagsHTML += tag + ' (' + allTags[tag] + ') ';
     allTagsHTML += tagLinkHTML;
-
 
     /* [NEW] END LOOP: for each tag in allTags: */
   }
@@ -269,7 +278,7 @@ function tagClickHandler(event){
 
   /* find all tag links with class active */
 
-  const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+  const activeTagLinks = document.querySelectorAll('a[href^="#tag-"]');
  //console.log(activeTagLinks);
 
   /* START LOOP: for each active tag link */

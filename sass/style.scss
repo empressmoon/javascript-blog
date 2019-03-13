@@ -138,3 +138,39 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+
+/* Tags cloud */
+
+.tag-size-1 {
+  font-size: 16px;
+}
+
+.tag-size-2 {
+  font-size: 20px;
+}
+
+.tag-size-3 {
+  font-size: 24px;
+}
+
+.tag-size-4 {
+  font-size: 28px;
+}
+
+.tag-size-5 {
+  font-size: 30px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    margin: 5px;
+
+    a {
+    text-decoration: none;
+    }
+  }
+}
