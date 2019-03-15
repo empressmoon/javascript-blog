@@ -31,8 +31,8 @@
 
 function titleClickHandler(event){
   event.preventDefault();
-  const clickedElement = this;
-  const activeLinks = document.querySelectorAll('.titles a.active');
+  const clickedElement = this,
+    activeLinks = document.querySelectorAll('.titles a.active');
 
   for(let activeLink of activeLinks){
     activeLink.classList.remove('active');
@@ -46,8 +46,8 @@ function titleClickHandler(event){
     activeArticle.classList.remove('active');
   }
 
-  const articleSelector = clickedElement.getAttribute('href');
-  const targetArticle = document.querySelector(articleSelector);
+  const articleSelector = clickedElement.getAttribute('href'),
+    targetArticle = document.querySelector(articleSelector);
 
   targetArticle.classList.add('active');
 }
@@ -56,6 +56,7 @@ function titleClickHandler(event){
 
 function generateTitleLinks(customSelector = ''){
   const titleList = document.querySelector(select.listOf.titles);
+
   titleList.innerHTML = '';
 
   const articles = document.querySelectorAll(select.all.articles + customSelector);
@@ -110,10 +111,10 @@ function generateTags(){
   const articles = document.querySelectorAll(select.all.articles);
 
   for(let article of articles){
-    const tagWrapper = article.querySelector(select.article.tags);
+    const tagWrapper = article.querySelector(select.article.tags),
+      articleTags = article.getAttribute('data-tags'),
+      articleTagsArray = articleTags.split(' ');
     let html = '';
-    const articleTags = article.getAttribute('data-tags');
-    const articleTagsArray = articleTags.split(' ');
 
     for(let tag of articleTagsArray){
       const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
@@ -174,10 +175,10 @@ function generateAuthors(){
   const articles = document.querySelectorAll(select.all.articles);
 
   for(let article of articles){
-    const authorWrapper = article.querySelector(select.article.author);
+    const authorWrapper = article.querySelector(select.article.author),
+      articleAuthor = article.getAttribute('data-author'),
+      linkHTML = 'by ' + '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
     let html = '';
-    const articleAuthor = article.getAttribute('data-author');
-    const linkHTML = 'by ' + '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
 
       html = html + linkHTML;
 
